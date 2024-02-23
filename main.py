@@ -41,7 +41,7 @@ async def GETyf():
     df = yf.download("AAPL")
     df = df.to_dict()
     send_time = time() - start_time 
-    return{'res': 'pong', 'version': __version__ , "time": time() ,"send_time",send_time,"df" : df}
+    return{'res': 'pong', 'version': __version__ , "time": time() ,"send_time":send_time,"df" : df}
     
 @app.get('/ping')
 async def hello():
