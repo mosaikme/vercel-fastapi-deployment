@@ -23,6 +23,7 @@ html = f"""
             <ul>
                 <li><a href="/docs">/docs</a></li>
                 <li><a href="/redoc">/redoc</a></li>
+                <li><a href="/GETyf">/GETyf</a></li>
             </ul>
             <p>Powered by <a href="https://vercel.com" target="_blank">Vercel</a></p>
         </div>
@@ -39,7 +40,7 @@ async def GETyf():
     df = yf.download("AAPL")
     df = df.to_dict()
     
-    return{'res': 'pong', 'version': __version__, , df "time": time()}
+    return{'res': 'pong', 'version': __version__,"df" : df , "time": time()}
     
 @app.get('/ping')
 async def hello():
