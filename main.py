@@ -29,7 +29,14 @@ html = f"""
 @app.get("/")
 async def root():
     return HTMLResponse(html)
-
+    
+@app.get("/GETyf")
+async def GETyf():
+    df = yf.download("AAPL")
+    df = df.to_dict()
+    
+    return{'res': 'pong', 'version': __version__, , df "time": time()}
+    
 @app.get('/ping')
 async def hello():
     return {'res': 'pong', 'version': __version__, "time": time()}
