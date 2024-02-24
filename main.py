@@ -15,6 +15,7 @@ from fastapi_cache import FastAPICache
 from fastapi_cache.backends.inmemory import InMemoryBackend
 from fastapi_cache.decorator import cache
 from fastapi_cache.coder import PickleCoder
+
 from contextlib import asynccontextmanager
 
 
@@ -65,7 +66,7 @@ async def root():
 async def get_stock_data(symbols):
     # Fetch historical data using yfinance for all symbols
     data = yf.download(symbols)
-    print("CHACHE IT ")
+   
     return data
 
 @app.get("/GETyf")
