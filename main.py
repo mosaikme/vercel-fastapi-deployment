@@ -18,9 +18,21 @@ from fastapi_cache.coder import PickleCoder
 
 
     
-app = FastAPI()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    ##This is StartUp
+
+    # Initialise the Client on startup and add it to the state
+    FastAPICache.init(InMemoryBackend())
+    # websocket_task = asyncio.create_task(start_websocket())
+
+    yield
+    
+app = FastAPI(docs_url=None, redoc_url=None ,lifespan=lifespan)  
 app.mount("/static", StaticFiles(directory="static"), name="static")
-FastAPICache.init(InMemoryBackend())
+
 
     
 html = f"""
