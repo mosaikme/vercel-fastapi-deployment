@@ -7,6 +7,16 @@ import pandas as pd
 import numpy as np 
 
 
+
+# ==================================================================
+# Cache
+# ==================================================================
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.inmemory import InMemoryBackend
+from fastapi_cache.decorator import cache
+from fastapi_cache.coder import PickleCoder
+
+
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -35,10 +45,17 @@ html = f"""
 async def root():
     return HTMLResponse(html)
     
+@cache(expire=60*30,namespace='abc',coder=PickleCoder) ## choosing coder pickle to store DATAFRAMES.
+async def get_stock_data(symbols):
+    # Fetch historical data using yfinance for all symbols
+    data = yf.download(symbols)
+    return data
+
 @app.get("/GETyf")
 async def GETyf():
     start_time= time()
-    df = yf.download("AAPL")
+    df = await get_stock_data("APPL)
+    # df = yf.download("AAPL")
     df = df.to_dict()
     send_time = time() - start_time 
     return{'res': 'pong', 'version': __version__ , "time": time() ,"send_time":send_time,"df" : df}
