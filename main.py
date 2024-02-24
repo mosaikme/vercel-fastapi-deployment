@@ -65,6 +65,7 @@ async def root():
 async def get_stock_data(symbols):
     # Fetch historical data using yfinance for all symbols
     data = yf.download(symbols)
+    print("CHACHE IT ")
     return data
 
 @app.get("/GETyf")
