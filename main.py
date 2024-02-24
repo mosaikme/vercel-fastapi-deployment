@@ -70,7 +70,7 @@ async def get_stock_data(symbols):
 @app.get("/GETyf")
 async def GETyf():
     start_time= time()
-    df = await get_stock_data("APPL")
+    df = await get_stock_data("AAPL")
     # df = yf.download("AAPL")
     df = df.to_dict()
     send_time = time() - start_time 
