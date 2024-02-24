@@ -27,6 +27,7 @@ async def lifespan(app: FastAPI):
 
     # Initialise the Client on startup and add it to the state
     FastAPICache.init(InMemoryBackend())
+    yield
     
 html = f"""
 <!DOCTYPE html>
