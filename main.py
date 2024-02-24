@@ -15,6 +15,7 @@ from fastapi_cache import FastAPICache
 from fastapi_cache.backends.inmemory import InMemoryBackend
 from fastapi_cache.decorator import cache
 from fastapi_cache.coder import PickleCoder
+from contextlib import asynccontextmanager
 
 
     
