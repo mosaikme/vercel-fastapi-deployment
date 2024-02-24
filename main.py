@@ -30,7 +30,7 @@ async def lifespan(app: FastAPI):
     # websocket_task = asyncio.create_task(start_websocket())
 
     yield
-    
+FastAPICache.init(InMemoryBackend())    
 app = FastAPI(docs_url=None, redoc_url=None ,lifespan=lifespan)  
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
