@@ -61,7 +61,7 @@ html = f"""
 async def root():
     return HTMLResponse(html)
     
-@cache(expire=60*30,namespace='abc',coder=PickleCoder) ## choosing coder pickle to store DATAFRAMES.
+@cache(expire=60*30,coder=PickleCoder) ## choosing coder pickle to store DATAFRAMES.
 async def get_stock_data(symbols):
     # Fetch historical data using yfinance for all symbols
     data = yf.download(symbols)
