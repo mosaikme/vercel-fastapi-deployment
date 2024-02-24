@@ -17,9 +17,17 @@ from fastapi_cache.decorator import cache
 from fastapi_cache.coder import PickleCoder
 
 
+    
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    ##This is StartUp
+
+    # Initialise the Client on startup and add it to the state
+    FastAPICache.init(InMemoryBackend())
+    
 html = f"""
 <!DOCTYPE html>
 <html>
